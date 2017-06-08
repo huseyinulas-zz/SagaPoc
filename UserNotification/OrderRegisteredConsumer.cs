@@ -13,7 +13,7 @@ namespace UserNotification
         {
             IOrderRegisteredEvent message = context.Message;
 
-            await Console.Out.WriteLineAsync($"Customer Notification Sent : {message.UserMail} with order {message.OrderId}");
+            await Console.Out.WriteLineAsync($"Customer Notification Sent : {message.UserMail} with order {message.OrderId} @ {DateTime.Now} / {message.CorrelationId}");
         }
     }
 }

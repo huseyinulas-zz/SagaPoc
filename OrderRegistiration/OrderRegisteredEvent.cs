@@ -6,9 +6,9 @@ namespace OrderRegistiration
 {
     public class OrderRegisteredEvent : IOrderRegisteredEvent
     {
-        private IRegisterOrderCommand command;
+        private IOrderReceivedEvent command;
         private int orderId;
-        public OrderRegisteredEvent(IRegisterOrderCommand command, int orderId)
+        public OrderRegisteredEvent(IOrderReceivedEvent command, int orderId)
         {
             this.command = command;
             this.orderId = orderId;
@@ -23,28 +23,32 @@ namespace OrderRegistiration
         public string Username
         {
             get { return command.Username; }
-            set { command.Username = value; }
+            set { Username = value; }
         }
 
         public string UserMail
         {
             get { return command.UserMail; }
-            set { command.UserMail = value; }
+            set { UserMail = value; }
         }
 
         public string OrderName
         {
             get { return command.OrderName; }
-            set { command.OrderName = value; }
+            set { OrderName = value; }
         }
 
         public string DeliveryAdress
         {
             get { return command.DeliveryAdress; }
-            set { command.DeliveryAdress = value; }
+            set { DeliveryAdress = value; }
         }
 
-        public Guid CorrelationId { get; set; }
+        public Guid CorrelationId
+        {
+            get { return command.CorrelationId; }
+            set { CorrelationId = value; }
+        }
 
         public string OrderCapturedIp
         {

@@ -23,14 +23,14 @@ namespace SagaWorkFlow
                                                    context.Instance.UserMail = context.Data.UserMail;
                                                    context.Instance.Username = context.Data.Username;
                                                })
-                                         .ThenAsync(context => Console.Out.WriteLineAsync($"Order for customer {context.Data.OrderName} received @ {DateTime.Now}"))
+                                         .ThenAsync(context => Console.Out.WriteLineAsync($"Order for customer {context.Instance.OrderName} received @ {DateTime.Now} / {context.Instance.CorrelationId}"))
                                          .TransitionTo(Received)
                                          .Publish(context => new OrderReceivedEvent(context.Instance))
                      );
             During(Received,
                    When(OrderRegistered)
                        .Then(context => context.Instance.RegisteredDateTime = DateTime.Now)
-                       .ThenAsync(context => Console.Out.WriteLineAsync($"Order for customer {context.Instance.OrderName} registered @ {DateTime.Now}"))
+                       .ThenAsync(context => Console.Out.WriteLineAsync($"Order for customer {context.Instance.OrderName} registered @ {DateTime.Now} / {context.Instance.CorrelationId}"))
                        .Finalize()
                   );
 

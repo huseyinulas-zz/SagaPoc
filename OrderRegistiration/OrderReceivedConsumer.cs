@@ -13,10 +13,11 @@ namespace OrderRegistiration
         {
             var id = 12;
             IOrderReceivedEvent command = context.Message;
-            await Console.Out.WriteLineAsync($"Order with id {id} registered @ {DateTime.Now}");
+            await Console.Out.WriteLineAsync($"Order with id {id} registered @ {DateTime.Now} / {command.CorrelationId}");
 
 
-            await context.Publish<IOrderRegisteredEvent>(new { CorrelationId = command.CorrelationId });
+            var orderRegisteredEvent = new OrderRegisteredEvent(command, id);
+            await context.Publish<IOrderRegisteredEvent>(orderRegisteredEvent);
         }
     }
 }
