@@ -1,0 +1,19 @@
+﻿@model EventSourcing.Controllers.PurchaseViewModel
+
+@{
+    ViewBag.Title = "Purchase Order Page";
+}
+
+<h2>Purchase Order Page</h2>
+@using (Html.BeginForm()) { 
+@Html.Label("Name : ")
+@Html.TextBoxFor(i => i.Username, new { @class = "form-control" })
+@Html.Label("Your Email : ")
+@Html.TextBoxFor(i => i.UserMail, new { @class = "form-control" })
+@Html.Label("Delivery Adress : ")
+@Html.TextAreaFor(i => i.DeliveryAdress, new { @class = "form-control" })
+@Html.Label("Order : ")
+@Html.TextBoxFor(i => i.OrderName, new { @class = "form-control" })
+
+    <input type="submit" value="Purchase" class="btn btn-default"/>
+}
