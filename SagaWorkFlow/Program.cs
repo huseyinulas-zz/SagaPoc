@@ -29,7 +29,7 @@ namespace SagaWorkFlow
                 });
             });
             bus.Start();
-            Console.WriteLine("Saga active.. Press enter to exit");
+            Console.WriteLine("Saga is active...");
             Console.ReadLine();
             bus.Stop();
         }
